@@ -1,16 +1,17 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <h2>{{ testResponse }}</h2>
     <button v-on:click='getThing'>Get Thing</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'hello',
   data () {
     return {
-      msg: 'Welcome to Garden View'
+      msg: 'Welcome to Garden View',
+      testResponse: ''
     }
   },
   methods: {
@@ -19,6 +20,7 @@ export default {
       this.$http.get('api')
         .then((res) => {
           console.info('got thing!', res.body.msg)
+          this.testResponse = res.body.msg
         }, (error) => {
           console.error('failed to get resource', error)
         })
