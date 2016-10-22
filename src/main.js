@@ -5,6 +5,8 @@ Vue.use(VueResource)
 
 import App from './App'
 
+Vue.http.options.root = 'http://localhost:3000'
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

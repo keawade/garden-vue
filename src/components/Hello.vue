@@ -15,12 +15,12 @@ export default {
   },
   methods: {
     getThing () {
-      this.$http.get('http://localhost:3000/api')
+      console.log(this.$http.options.root)
+      this.$http.get('api')
         .then((res) => {
           console.info('got thing!', res.body.msg)
         }, (error) => {
           console.error('failed to get resource', error)
-          return 'error'
         })
     }
   }
