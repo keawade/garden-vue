@@ -1,15 +1,9 @@
 <template>
   <div class="app-header">
     <div class='ui secondary pointing menu'>
-      <a class='item { active: isActive }'>
-        Home
-      </a>
-      <a class="item">
-        Messages
-      </a>
-      <a class="item">
-        Friends
-      </a>
+      <router-link to="/" class='item'>Home</router-link>
+      <router-link to="/foo" class='item'>Messages</router-link>
+      <router-link to="/bar" class='item'>Friends</router-link>
       <div class="right menu">
         <a class="ui item">
           Logout
