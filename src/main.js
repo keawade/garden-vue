@@ -9,6 +9,7 @@ Vue.use(VueRouter)
 import App from './App'
 import Foo from './components/Foo'
 import Bar from './components/Bar'
+import Home from './components/Home'
 
 Vue.http.options.root = 'http://localhost:3000'
 
@@ -19,12 +20,18 @@ const router = new VueRouter({
     path: '/',
     component: App,
     children: [{
+      path: '',
+      component: Home
+    }, {
       path: 'foo',
       component: Foo
     }, {
       path: 'bar',
       component: Bar
     }]
+  }, {
+    path: '*',
+    redirect: '/'
   }]
 })
 
