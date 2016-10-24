@@ -2,16 +2,31 @@ import Vue from 'vue'
 import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
 
+import auth from './auth'
+
 Vue.use(VueResource)
 Vue.use(VueRouter)
 
 // import App from './App'
 import App from './App'
-import Foo from './components/Foo'
-import Bar from './components/Bar'
-import Home from './components/Home'
+import Profile from './components/Profile'
+import Feed from './components/Feed'
+import Login from './components/Login'
 
 Vue.http.options.root = 'http://localhost:3000'
+
+const requireAuth = (to, from, next) => {
+  if (!auth.loggedIn()) {
+    next({
+      path: '/login',
+      query: {
+        redirect: to.fullPath
+      }
+    })
+  } else {
+    next()
+  }
+}
 
 const router = new VueRouter({
   mode: 'history',
@@ -21,13 +36,21 @@ const router = new VueRouter({
     component: App,
     children: [{
       path: '',
-      component: Home
+      component: Feed,
+      beforeEnter: requireAuth
     }, {
-      path: 'foo',
-      component: Foo
+      path: 'profile',
+      component: Profile,
+      beforeEnter: requireAuth
     }, {
-      path: 'bar',
-      component: Bar
+      path: '/login',
+      component: Login
+    }, {
+      path: '/logout',
+      beforeEnter (to, from, next) {
+        auth.logout()
+        next('/login')
+      }
     }]
   }, {
     path: '*',
@@ -35,9 +58,12 @@ const router = new VueRouter({
   }]
 })
 
+const data = {}
+
 /* eslint-disable no-new */
 new Vue({
   router,
   el: '#app',
+  data,
   template: `<router-view class="view"></router-view>`
 })

@@ -1,13 +1,11 @@
 <template>
   <div class="app-header">
     <div class='ui secondary pointing menu'>
-      <router-link to="/" class='item'>Home</router-link>
-      <router-link to="/foo" class='item'>Messages</router-link>
-      <router-link to="/bar" class='item'>Friends</router-link>
+      <router-link to="/" class='item'>Feed</router-link>
+      <router-link to="/profile" class='item'>Profile</router-link>
       <div class="right menu">
-        <a class="ui item">
-          Logout
-        </a>
+        <router-link to="/logout" class='item'>Logout</router-link>
+        <router-link to="/login" class='item'>Login</router-link>
       </div>
     </div>
   </div>

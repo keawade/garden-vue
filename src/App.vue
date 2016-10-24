@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <AppHeader />
-    <router-view class='view'></router-view>
+    <div class='thing'>
+      <router-view class='ui grid container'></router-view>
+    </div>
   </div>
 </template>
 
@@ -25,4 +27,7 @@ export default {
 </script>
 
 <style>
+  .thing {
+    padding-top: 40px;
+  }
 </style>
