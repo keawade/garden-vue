@@ -1,7 +1,7 @@
 {
   "name": "garden-vue",
   "version": "1.0.0",
-  "description": "An implementation of whiteboards/garden in Vue.",
+  "description": "An implementation of garden-stream/garden in Vue.",
   "author": "Keith Wade <keawade@gmail.com>",
   "private": true,
   "scripts": {

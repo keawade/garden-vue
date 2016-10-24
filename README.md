@@ -1,6 +1,6 @@
 # garden-vue
 
-> An implementation of whiteboards/garden in Vue.
+> An implementation of garden-stream/garden in Vue.
 
 ## Build Setup
 

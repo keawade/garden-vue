@@ -12,12 +12,6 @@ import AppHeader from './components/AppHeader'
 
 export default {
   name: 'app',
-  data () {
-    return {
-      msg: 'Hello, this is your computer speaking.',
-      testResponse: ''
-    }
-  },
   components: {
     AppHeader
   }
