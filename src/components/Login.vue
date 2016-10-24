@@ -5,10 +5,13 @@
     </div>
     <br />
     <div class='ui container'>
+      <div class='ui error message' v-if='$route.query.redirect'>
+        You need to login first.
+      </div>
+    </div>
+    <br />
+    <div class='ui container'>
       <div class='ui segment'>
-        <p v-if='$route.query.redirect'>
-          You need to login first.
-        </p>
         <form @submit.prevent='login' class='ui form'>
           <div class='field'>
             <label>User Name</label>
