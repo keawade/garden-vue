@@ -9,8 +9,9 @@ Vue.use(VueRouter)
 
 // import App from './App'
 import App from './App'
-import Profile from './components/Profile'
 import Feed from './components/Feed'
+import Following from './components/Following'
+import Profile from './components/Profile'
 import Login from './components/Login'
 
 Vue.http.options.root = 'http://localhost:3000'
@@ -37,6 +38,10 @@ const router = new VueRouter({
     children: [{
       path: '',
       component: Feed,
+      beforeEnter: requireAuth
+    }, {
+      path: 'following',
+      component: Following,
       beforeEnter: requireAuth
     }, {
       path: 'profile',

@@ -2,13 +2,12 @@
   <div id="app">
     <AppHeader />
     <div class='thing'>
-      <router-view class='ui grid container'></router-view>
+      <router-view></router-view>
     </div>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
 import AppHeader from './components/AppHeader'
 
 export default {
@@ -20,14 +19,13 @@ export default {
     }
   },
   components: {
-    AppHeader,
-    Hello
+    AppHeader
   }
 }
 </script>
 
 <style>
   .thing {
-    padding-top: 40px;
+    padding-top: 20px;
   }
 </style>

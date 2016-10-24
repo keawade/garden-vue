@@ -1,15 +1,28 @@
 <template>
   <div>
-    <h2>Login</h2>
-    <p v-if="$route.query.redirect">
-      You need to login first.
-    </p>
-    <form @submit.prevent="login">
-      <label><input v-model="email" placeholder="email"></label>
-      <label><input v-model="pass" placeholder="password" type="password"></label> (hint: password1)<br>
-      <button type="submit">login</button>
-      <p v-if="error" class="error">Bad login information</p>
-    </form>
+    <div class='ui container'>
+      <h1 class='ui header'>Login</h1>
+    </div>
+    <br />
+    <div class='ui container'>
+      <div class='ui segment'>
+        <p v-if='$route.query.redirect'>
+          You need to login first.
+        </p>
+        <form @submit.prevent='login' class='ui form'>
+          <div class='field'>
+            <label>User Name</label>
+            <input v-model='email' placeholder='email'>
+          </div>
+          <div class='field'>
+            <label>Password</label>
+            <input v-model='pass' placeholder='password' type='password'> (hint: password1)<br>
+          </div>
+          <button class='ui button' type='submit'>Login</button>
+          <p v-if='error' class='error'>Bad login information</p>
+        </form>
+      </div>
+    </div>
   </div>
 </template>
 
