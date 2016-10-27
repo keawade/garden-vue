@@ -1,10 +1,8 @@
 <template>
-  <div id="app">
-    <AppHeader />
-    <div class='thing'>
-      <router-view></router-view>
-    </div>
-  </div>
+	<div id="app">
+		<AppHeader />
+		<router-view></router-view>
+	</div>
 </template>
 
 <script>
@@ -19,7 +17,7 @@ export default {
 </script>
 
 <style>
-  .thing {
-    padding-top: 20px;
-  }
+.top-padder {
+  padding: 14px 0;
+}
 </style>
