@@ -1,32 +1,25 @@
 <template>
-  <div>
-    <div class='ui container'>
-      <h1 class='ui header'>Login</h1>
-    </div>
-    <br />
-    <div class='ui container'>
-      <div class='ui error message' v-if='$route.query.redirect'>
-        You need to login first.
-      </div>
-    </div>
-    <br />
-    <div class='ui container'>
-      <div class='ui segment'>
-        <form @submit.prevent='login' class='ui form'>
-          <div class='field'>
-            <label>User Name</label>
-            <input v-model='email' placeholder='email'>
-          </div>
-          <div class='field'>
-            <label>Password</label>
-            <input v-model='pass' placeholder='password' type='password'> (hint: password1)<br>
-          </div>
-          <button class='ui button' type='submit'>Login</button>
-          <p v-if='error' class='error'>Bad login information</p>
-        </form>
-      </div>
-    </div>
-  </div>
+	<div class='ui container top-padding'>
+		<div class='ui segment'>
+				<div class='ui error message' v-if='$route.query.redirect'>
+					You need to login first.
+				</div>
+				<div class='ui error message' v-if='error'>
+					Bad login information.
+				</div>
+			<form @submit.prevent='login' class='ui form'>
+				<div class='field'>
+					<label>User Name</label>
+					<input v-model='email' placeholder='email'>
+				</div>
+				<div class='field'>
+					<label>Password</label>
+					<input v-model='pass' placeholder='password' type='password'> (hint: password1)<br>
+				</div>
+				<button class='ui button' type='submit'>Login</button>
+			</form>
+		</div>
+	</div>
 </template>
 
 <script>
@@ -53,8 +46,8 @@ export default {
 }
 </script>
 
-<style>
-.error {
-  color: red;
-}
+<style scoped>
+  .top-padding {
+    padding-top: 14px;
+  }
 </style>

@@ -17,7 +17,7 @@ export default {
 </script>
 
 <style>
-.top-padder {
-  padding: 14px 0;
-}
+	.top-padder {
+		padding: 14px 0;
+	}
 </style>
