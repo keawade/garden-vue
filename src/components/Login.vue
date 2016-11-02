@@ -1,12 +1,12 @@
 <template>
 	<div class='ui container top-padding'>
 		<div class='ui segment'>
-				<div class='ui error message' v-if='$route.query.redirect'>
-					You need to login first.
-				</div>
-				<div class='ui error message' v-if='error'>
-					Bad login information.
-				</div>
+			<div class='ui error message' v-if='$route.query.redirect'>
+				You need to login first.
+			</div>
+			<div class='ui error message' v-if='error'>
+				Bad login information.
+			</div>
 			<form @submit.prevent='login' class='ui form'>
 				<div class='field'>
 					<label>User Name</label>
@@ -47,7 +47,7 @@ export default {
 </script>
 
 <style scoped>
-  .top-padding {
-    padding-top: 14px;
-  }
+	.top-padding {
+		padding-top: 14px;
+	}
 </style>
