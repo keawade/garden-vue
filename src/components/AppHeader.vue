@@ -4,6 +4,7 @@
       <div class='ui container'>
         <router-link to='/' class='item'>Feed</router-link>
         <router-link to='/following' class='item'>Following</router-link>
+        <router-link to='/users' class='item'>Find Users</router-link>
         <div class='right menu'>
           <router-link to='/profile' class='item'>Profile</router-link>
           <router-link v-if='!isAuthenticated' to='/logout' class='item'>Logout</router-link>

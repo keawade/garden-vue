@@ -43,7 +43,15 @@
           console.log('res', res)
           this.$store.commit('setToken', res.body.token)
           this.$store.commit('setIsAuthenticated', true)
-          this.$store.commit('setUser', { username: res.body.username })
+          this.$http.get(`user/${res.body.username}`, {token: this.$store.state.token})
+            .then((userRes) => {
+              console.log('userRes', userRes)
+              this.$store.commit('setUser', userRes.body)
+            }, (userRes) => {
+              console.error('[Login] failed to get user', userRes)
+              this.$store.commit('setToken', '')
+              this.$store.commit('setIsAuthenticated', false)
+            })
           console.log('success!')
         }, (res) => {
           console.log('res', res)

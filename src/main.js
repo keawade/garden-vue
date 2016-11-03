@@ -11,6 +11,7 @@ Vue.use(Vuex)
 import App from './App'
 import Feed from './components/Feed'
 import Following from './components/Following'
+import Users from './components/Users'
 import Profile from './components/Profile'
 import Auth from './components/Auth'
 
@@ -42,6 +43,10 @@ const router = new VueRouter({
     }, {
       path: 'following',
       component: Following,
+      beforeEnter: requireAuth
+    }, {
+      path: 'users',
+      component: Users,
       beforeEnter: requireAuth
     }, {
       path: 'profile',
