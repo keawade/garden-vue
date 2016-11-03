@@ -12,7 +12,7 @@ import App from './App'
 import Feed from './components/Feed'
 import Following from './components/Following'
 import Profile from './components/Profile'
-import Login from './components/Login'
+import Auth from './components/Auth'
 
 Vue.http.options.root = 'http://garden-api.herokuapp.com'
 
@@ -49,7 +49,7 @@ const router = new VueRouter({
       beforeEnter: requireAuth
     }, {
       path: '/login',
-      component: Login
+      component: Auth
     }, {
       path: '/logout',
       beforeEnter (to, from, next) {
