@@ -14,16 +14,17 @@
       }
     },
     created () {
-      this.$http.get('user')
-        .then((res) => {
-          this.users = res.body.map((user) => {
-            return user._id === this.$store.state.user._id ? undefined : user
-          }).filter((user) => {
-            return user !== undefined
-          })
-        }, (res) => {
-          console.log('[Users] failed to get users', res)
+      this.$http.get('user', {
+        token: this.$store.state.token
+      }).then((res) => {
+        this.users = res.body.map((user) => {
+          return user._id === this.$store.state.user._id ? undefined : user
+        }).filter((user) => {
+          return user !== undefined
         })
+      }, (res) => {
+        console.log('[Users] failed to get users', res)
+      })
     },
     components: {
       UserItem
