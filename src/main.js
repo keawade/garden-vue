@@ -15,7 +15,7 @@ import Users from './components/Users'
 import Profile from './components/Profile'
 import Auth from './components/Auth'
 
-Vue.http.options.root = 'http://garden-api.herokuapp.com/api'
+Vue.http.options.root = 'https://garden-api.herokuapp.com/api'
 
 const requireAuth = (to, from, next) => {
   if (!store.state.isAuthenticated) {
