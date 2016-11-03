@@ -1,16 +1,9 @@
 <template>
 	<div class='ui container top-padder'>
-		<div class='ui segment'>
-			<img class='ui large image' src='/static/short-paragraph.png' />
-		</div>
-		<div class='ui segment'>
-			<img class='ui large image' src='/static/short-paragraph.png' />
-		</div>
-		<div class='ui segment'>
-			<img class='ui large image' src='/static/short-paragraph.png' />
-		</div>
-		<div class='ui segment'>
-			<img class='ui large image' src='/static/short-paragraph.png' />
+		<div v-for='post in feed' class='ui segment'>
+      <div>{{ post.author_id.username }}</div>
+      <div>{{ post.content }}</div>
+      <div>{{ post.createdAt }}</div>
 		</div>
 	</div>
 </template>
@@ -22,13 +15,16 @@
       }
     },
     created () {
-    // this.$http.get('feed', {
-    //   token: this.$store.state.token
-    // }).then((res) => {
-    //   this.feed = res.body
-    // }, (res) => {
-    //   console.error('[Feed] failed to get feed', res.body)
-    // })
+      this.$http.get('feed', {
+        headers: {
+          token: this.$store.state.token
+        }
+      }).then((res) => {
+        console.info('thing', res.body)
+        this.feed = res.body
+      }, (res) => {
+        console.error('[Feed] failed to get feed', res.body)
+      })
     }
   }
 </script>
