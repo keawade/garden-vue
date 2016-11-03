@@ -19,15 +19,21 @@
         console.log('[UserItem] following', this.user.username)
         this.$http.post(`user/${this.user._id}/follow`, {
           token: this.$store.state.token
+        }).then((res) => {
+          this.$store.commit('setUser', res.body)
+        }, (res) => {
+          console.error('[UserItem] failed to unfollow user', res.body)
         })
-          .then((res) => {
-            this.$store.commit('setUser', res.body)
-          }, (res) => {
-            console.error('[UserItem] failed to unfollow user', res.body)
-          })
       },
       unfollow () {
         console.log('[UserItem] unfollowing', this.user.username)
+        this.$http.put(`user/${this.user._id}/unfollow`, {
+          token: this.$store.state.token
+        }).then((res) => {
+          this.$store.commit('setUser', res.body)
+        }, (res) => {
+          console.error('[UserItem] failed to unfollow user', res.body)
+        })
       }
     }
   }
