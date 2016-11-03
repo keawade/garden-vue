@@ -6,7 +6,7 @@
 			</div>
 			<div class='column'>
 				<div>
-					<h1 class='ui header'>Joe Example</h1>
+					<h1 class='ui header'>{{ displayname }}</h1>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla in nisl posuere turpis hendrerit mollis in nec ipsum.
 						Vestibulum sem sem, porttitor non ullamcorper in, euismod eu nunc. Maecenas maximus ligula vitae nibh venenatis pulvinar.
 						Sed molestie ipsum et nunc feugiat, posuere tincidunt urna congue. Fusce dictum urna lectus, ut convallis turpis porta
@@ -22,6 +22,13 @@
 	</div>
 </template>
 <script>
+  export default {
+    data () {
+      return {
+        displayname: this.$store.state.user.username // Change later
+      }
+    }
+  }
 </script>
 <style scoped>
 

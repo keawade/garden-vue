@@ -11,11 +11,11 @@
       <form @submit.prevent='login' class='ui form'>
         <div class='field'>
           <label>User Name</label>
-          <input v-model='email' placeholder='email'>
+          <input v-model='username' placeholder='User Name'>
         </div>
         <div class='field'>
           <label>Password</label>
-          <input v-model='pass' placeholder='password' type='password'> (hint: password1)<br>
+          <input v-model='password' placeholder='Password' type='password'>
         </div>
         <button class='ui button' type='submit'>Login</button>
       </form>
@@ -23,27 +23,35 @@
   </div>
 </template>
 <script>
-import auth from '../auth'
-export default {
-  data () {
-    return {
-      email: 'joe@example.com',
-      pass: '',
-      error: false
-    }
-  },
-  methods: {
-    login () {
-      auth.login(this.email, this.pass, loggedIn => {
-        if (!loggedIn) {
-          this.error = true
-        } else {
-          this.$router.replace(this.$route.query.redirect || '/')
-        }
-      })
+  export default {
+    data () {
+      return {
+        username: '',
+        password: '',
+        error: ''
+      }
+    },
+    methods: {
+      resetError () {
+        this.error = ''
+      },
+      login () {
+        this.$http.post('auth/login', {
+          username: this.username,
+          password: this.password
+        }).then((res) => {
+          console.log('res', res)
+          this.$store.commit('setToken', res.body.token)
+          this.$store.commit('setIsAuthenticated', true)
+          this.$store.commit('setUser', { username: res.body.username })
+          console.log('success!')
+        }, (res) => {
+          console.log('res', res)
+          this.error = res.body.error
+        })
+      }
     }
   }
-}
 </script>
 <style scoped>
 

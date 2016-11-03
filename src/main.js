@@ -14,10 +14,10 @@ import Following from './components/Following'
 import Profile from './components/Profile'
 import Auth from './components/Auth'
 
-Vue.http.options.root = 'http://garden-api.herokuapp.com'
+Vue.http.options.root = 'http://garden-api.herokuapp.com/api'
 
 const requireAuth = (to, from, next) => {
-  if (!auth.loggedIn()) {
+  if (!store.state.isAuthenticated) {
     next({
       path: '/login',
       query: {
@@ -53,7 +53,9 @@ const router = new VueRouter({
     }, {
       path: '/logout',
       beforeEnter (to, from, next) {
-        auth.logout()
+        store.commit('setToken', '')
+        store.commit('setIsAuthenticated', false)
+        store.commit('setUser', {})
         next('/login')
       }
     }]
@@ -62,52 +64,6 @@ const router = new VueRouter({
     redirect: '/'
   }]
 })
-
-const authRequest = (user, pass, cb) => {
-  console.log('auth request')
-}
-
-const auth = {
-  login (user, pass, cb) {
-    cb = arguments[arguments.length - 1]
-    if (store.state.token) {
-      if (cb) cb(true)
-      this.onChange(true)
-      return
-    }
-    authRequest(user, pass, (res) => {
-      if (res.authenticated) {
-        store.commit('setToken', res.token)
-        store.commit('setUser', user)
-        store.commit('setIsAuthenticated', true)
-        if (cb) cb(true)
-        this.onChange(true)
-      } else {
-        if (cb) cb(false)
-        store.commit('setIsAuthenticated', false)
-        this.onChange(false)
-      }
-    })
-  },
-
-  getToken () {
-    return store.state.token
-  },
-
-  logout (cb) {
-    store.commit('setToken', '')
-    store.commit('setUser', {})
-    store.commit('setIsAuthenticated', false)
-    if (cb) cb()
-    this.onChange(false)
-  },
-
-  loggedIn () {
-    return !!store.state.token
-  },
-
-  onChange () {}
-}
 
 /* eslint-disable no-new */
 const store = new Vuex.Store({
@@ -131,6 +87,5 @@ const store = new Vuex.Store({
 
 new Vue({
   router,
-  store,
-  auth
+  store
 }).$mount('#app')
