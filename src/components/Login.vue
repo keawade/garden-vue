@@ -5,9 +5,6 @@
         <div class='ui loader'></div>
       </div>
       <h1 class='header'>Login</h1>
-      <div class='ui error message' v-if='$route.query.redirect'>
-        You need to login first.
-      </div>
       <div class='ui error message' v-if='error'>
         {{ error }}
       </div>
