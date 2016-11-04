@@ -8,7 +8,7 @@
           <div class='description'>{{ user.username }}</div>
         </div>
         <div class='extra content'>
-          <button class='fluid ui basic secondary button' v-on:click='unfollow(user)' v-if='isFollowing(user)'>Unfollow</button>
+          <button class='fluid ui basic secondary button' v-on:click='unfollow(user)' v-if='$store.state.user.following.indexOf(user._id) > -1'>Unfollow</button>
           <button class='fluid ui basic primary button' v-on:click='follow(user)' v-else>Follow</button>
         </div>
       </div>
@@ -37,9 +37,6 @@
       })
     },
     methods: {
-      isFollowing (user) {
-        return this.$store.state.user.following.indexOf(user._id) > -1
-      },
       follow (user) {
         console.log('[UserItem] following', user.username)
         this.$http.post(`user/${user.username}/follow`, {
@@ -47,7 +44,7 @@
         }).then((res) => {
           this.$store.commit('setUser', res.body)
         }, (res) => {
-          console.error('[UserItem] failed to unfollow user', res.body)
+          console.error('[UserItem] failed to follow user', res.body)
         })
       },
       unfollow (user) {
