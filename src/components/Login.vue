@@ -1,6 +1,9 @@
 <template>
   <div class='column'>
     <div class='ui segment'>
+      <div v-if='loading' class='ui active inverted dimmer'>
+        <div class='ui loader'></div>
+      </div>
       <h1 class='header'>Login</h1>
       <div class='ui error message' v-if='$route.query.redirect'>
         You need to login first.
@@ -28,7 +31,8 @@
       return {
         username: '',
         password: '',
-        error: ''
+        error: '',
+        loading: false
       }
     },
     methods: {
@@ -36,6 +40,7 @@
         this.error = ''
       },
       login () {
+        this.loading = true
         this.$http.post('auth/login', {
           username: this.username,
           password: this.password
@@ -52,10 +57,11 @@
               this.$store.commit('setToken', '')
               this.$store.commit('setIsAuthenticated', false)
             })
-          console.log('success!')
+          this.loading = false
         }, (res) => {
           console.log('res', res)
           this.error = res.body.error
+          this.loading = false
         })
       }
     }

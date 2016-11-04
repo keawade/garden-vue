@@ -1,6 +1,9 @@
 <template>
   <div class='column'>
     <div class='ui segment'>
+      <div v-if='loading' class='ui active inverted dimmer'>
+        <div class='ui loader'></div>
+      </div>
       <h1 class='header'>Register</h1>
       <div class='ui error message' v-if='error'>
         {{ error }}
@@ -30,7 +33,8 @@
         username: '',
         password: '',
         confirmpass: '',
-        error: ''
+        error: '',
+        loading: false
       }
     },
     methods: {
@@ -42,6 +46,7 @@
           this.error = 'Passwords do not match.'
           return
         }
+        this.loading = true
         this.$http.post('auth/signup', {
           username: this.username,
           password: this.password
@@ -50,10 +55,11 @@
           this.$store.commit('setToken', res.body.token)
           this.$store.commit('setIsAuthenticated', true)
           this.$store.commit('setUser', { username: res.body.username })
-          console.log('success!')
+          this.loading = false
         }, (res) => {
           console.log('res', res)
           this.error = res.body.error
+          this.loading = false
         })
       }
     }

@@ -1,6 +1,11 @@
 <template>
 	<div class='ui container top-padder'>
-		<div v-for='post in feed' class='ui segment'>
+    <div v-if='feed.length === 0' class='ui segment'>
+      <div class='loader-height'>
+        <div class='ui active text loader'>Loading</div>
+      </div><br /><br /><br />
+    </div>
+		<div v-else v-for='post in feed' class='ui segment'>
       <div>{{ post.author_id.username }}</div>
       <div>{{ post.content }}</div>
       <div>{{ post.createdAt }}</div>
@@ -29,5 +34,4 @@
   }
 </script>
 <style scoped>
-
 </style>

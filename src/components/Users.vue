@@ -1,6 +1,11 @@
 <template>
   <div class='ui container top-padder'>
-    <div class='ui four cards'>
+    <div v-if='users.length === 0' class='ui segment'>
+      <div class='loader-height'>
+        <div class='ui active text loader'>Loading</div>
+      </div><br /><br /><br />
+    </div>
+    <div v-else class='ui four cards'>
       <div v-for='user in users' class='card'>
         <div class='content'>
           <div class='header'>{{ user.username }}</div>

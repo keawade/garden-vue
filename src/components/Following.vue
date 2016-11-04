@@ -1,6 +1,11 @@
 <template>
 	<div class='ui container top-padder'>
-		<div class='ui four cards'>
+      <div v-if='content.length === 0' class='ui segment'>
+      <div class='loader-height'>
+        <div class='ui active text loader'>Loading</div>
+      </div><br /><br /><br />
+    </div>
+		<div v-else class='ui four cards'>
 			<router-link v-for='(follower, index) in followers' class='card' to='"/users/" + follower.username'>
         <div class='content'>
           <div class='header'>{{ follower.username }}</div>
