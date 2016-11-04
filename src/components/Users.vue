@@ -16,7 +16,6 @@
   </div>
 </template>
 <script>
-  import UserItem from './UserItem'
   export default {
     data () {
       return {
@@ -36,9 +35,6 @@
       }, (res) => {
         console.log('[Users] failed to get users', res)
       })
-    },
-    components: {
-      UserItem
     },
     methods: {
       isFollowing (user) {

@@ -70,6 +70,11 @@ const router = new VueRouter({
   }]
 })
 
+router.beforeEach((to, from, next) => {
+  console.info('Navigating to', to.path)
+  next()
+})
+
 /* eslint-disable no-new */
 const store = new Vuex.Store({
   state: {
