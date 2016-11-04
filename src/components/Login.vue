@@ -9,7 +9,7 @@
         You need to login first.
       </div>
       <div class='ui error message' v-if='error'>
-        Bad login information.
+        {{ error }}
       </div>
       <form @submit.prevent='login' class='ui form'>
         <div class='field'>
@@ -59,8 +59,12 @@
             })
           this.loading = false
         }, (res) => {
-          console.log('res', res)
-          this.error = res.body.error
+          console.warn('[Login] error response', res)
+          if (res.body) {
+            this.error = res.body.error
+          } else {
+            this.error = `Unknown error (${res.status})`
+          }
           this.loading = false
         })
       }

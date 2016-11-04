@@ -57,8 +57,12 @@
           this.$store.commit('setUser', { username: res.body.username })
           this.loading = false
         }, (res) => {
-          console.log('res', res)
-          this.error = res.body.error
+          console.warn('[Login] error response', res)
+          if (res.body) {
+            this.error = res.body.error
+          } else {
+            this.error = `Unknown error (${res.status})`
+          }
           this.loading = false
         })
       }
