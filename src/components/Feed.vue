@@ -5,19 +5,26 @@
         <div class='ui active text loader'>Loading</div>
       </div><br /><br /><br />
     </div>
-		<div v-else v-for='post in feed' class='ui segment'>
-      <div>{{ post.author_id.username }}</div>
-      <div>{{ post.content }}</div>
-      <div>{{ post.createdAt }}</div>
-		</div>
+		<div v-else>
+      <AddPost />
+      <div v-for='post in feed' class='ui segment'>
+        <div>{{ post.author_id.username }}</div>
+        <div>{{ post.content }}</div>
+        <div>{{ post.createdAt }}</div>
+      </div>
+    </div>
 	</div>
 </template>
 <script>
+  import AddPost from './AddPost'
   export default {
     data () {
       return {
         feed: []
       }
+    },
+    components: {
+      AddPost
     },
     created () {
       this.$http.get('feed', {
